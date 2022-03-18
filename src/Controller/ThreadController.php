@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Api\Controller\Internal\Learn;
+namespace FOS\CommentBundle\Controller;
 
 use FOS\CommentBundle\FormFactory\CommentableThreadFormFactoryInterface;
 use FOS\CommentBundle\FormFactory\CommentFormFactoryInterface;
