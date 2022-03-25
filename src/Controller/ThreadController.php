@@ -98,7 +98,7 @@ class ThreadController extends AbstractFOSRestController
             // Add the thread
             $threadManager->saveThread($thread);
 
-            return $this->handleView($this->onCreateThreadSuccess($form));
+            return $this->onCreateThreadSuccess($form);
         }
 
         return $this->handleView($this->onCreateThreadError($form));
@@ -268,7 +268,7 @@ class ThreadController extends AbstractFOSRestController
 
         if ($form->isValid()) {
             if (false !== $commentManager->saveComment($comment)) {
-                return $this->handleView($this->onRemoveThreadCommentSuccess($form, $id));
+                return $this->onRemoveThreadCommentSuccess($form, $id);
             }
         }
 
@@ -320,7 +320,7 @@ class ThreadController extends AbstractFOSRestController
 
         if ($form->isValid()) {
             if (false !== $commentManager->saveComment($comment)) {
-                return $this->handleView($this->onEditCommentSuccess($form, $id, $comment->getParent()));
+                return $this->onEditCommentSuccess($form, $id, $comment->getParent());
             }
         }
 
@@ -420,7 +420,7 @@ class ThreadController extends AbstractFOSRestController
 
         if ($form->isValid()) {
             if (false !== $commentManager->saveComment($comment)) {
-                return $this->handleView($this->onCreateCommentSuccess($form, $id, $parent));
+                return $this->onCreateCommentSuccess($form, $id, $parent);
             }
         }
 
@@ -515,11 +515,11 @@ class ThreadController extends AbstractFOSRestController
      * @param string           $id     Id of the thread
      * @param CommentInterface $parent Optional comment parent
      *
-     * @return View
+     * @return Response
      */
     protected function onCreateCommentSuccess(FormInterface $form, $id, CommentInterface $parent = null)
     {
-        return View::createRouteRedirect('fos_comment_get_thread_comment', ['id' => $id, 'commentId' => $form->getData()->getId()], Response::HTTP_CREATED);
+        return $this->forward('fos_comment.controller.thread::getThreadCommentAction', ['id' => $id, 'commentId' => $form->getData()->getId()]);
     }
 
     /**
@@ -553,11 +553,11 @@ class ThreadController extends AbstractFOSRestController
      *
      * @param FormInterface $form
      *
-     * @return View
+     * @return Response
      */
     protected function onCreateThreadSuccess(FormInterface $form)
     {
-        return View::createRouteRedirect('fos_comment_get_thread', ['id' => $form->getData()->getId()], Response::HTTP_CREATED);
+        return $this->forward('fos_comment.controller.thread::getThreadAction', ['id' => $form->getData()->getId()]);
     }
 
     /**
@@ -640,7 +640,7 @@ class ThreadController extends AbstractFOSRestController
      */
     protected function onEditCommentSuccess(FormInterface $form, $id)
     {
-        return View::createRouteRedirect('fos_comment_get_thread_comment', ['id' => $id, 'commentId' => $form->getData()->getId()], Response::HTTP_CREATED);
+        return $this->forward('fos_comment.controller.thread::getThreadCommentAction', ['id' => $id, 'commentId' => $form->getData()->getId()]);
     }
 
     /**
@@ -713,7 +713,7 @@ class ThreadController extends AbstractFOSRestController
      */
     protected function onRemoveThreadCommentSuccess(FormInterface $form, $id)
     {
-        return View::createRouteRedirect('fos_comment_get_thread_comment', ['id' => $id, 'commentId' => $form->getData()->getId()], Response::HTTP_CREATED);
+        return $this->forward('fos_comment.controller.thread::getThreadCommentAction', ['id' => $id, 'commentId' => $form->getData()->getId()]);
     }
 
     /**
