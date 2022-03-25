@@ -709,11 +709,11 @@ class ThreadController extends AbstractFOSRestController
      * @param FormInterface $form Comment delete form
      * @param int           $id   Thread id
      *
-     * @return View
+     * @return Response
      */
     protected function onRemoveThreadCommentSuccess(FormInterface $form, $id)
     {
-        return $this->forward('fos_comment.controller.thread::getThreadCommentAction', ['id' => $id, 'commentId' => $form->getData()->getId()]);
+        return $this->redirectToRoute('fos_comment_get_thread_comment', ['id' => $id, 'commentId' => $form->getData()->getId()]);
     }
 
     /**
