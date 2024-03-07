@@ -3,7 +3,7 @@ FOSCommentBundle
 
 The FOSCommentBundle adds support for a comment system in Symfony. Features include:
 
-- Supports Symfony 3.4, 4.4
+- Supports Symfony 5.4
 - Manages trees of comments
 - Can include comment threads in any page
 - Compatible with any persistence backend. Doctrine2 mongodb-odm and ORM are implemented.
@@ -23,12 +23,12 @@ Documentation
 The bulk of the documentation is stored in the `Resources/doc/index.md`
 file in this bundle:
 
-[Read the Documentation](https://github.com/FriendsOfSymfony/FOSCommentBundle/blob/master/docs/index.md)
+[Read the Documentation](https://github.com/goncziakos/FOSCommentBundle/blob/master/docs/index.md)
 
 Installation
 ------------
 
-All the installation instructions are located in [documentation](https://github.com/FriendsOfSymfony/FOSCommentBundle/blob/master/docs/index.md).
+All the installation instructions are located in [documentation](https://github.com/goncziakos/FOSCommentBundle/blob/master/docs/index.md).
 
 License
 -------
